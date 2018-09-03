@@ -1,0 +1,89 @@
+*{
+    font-family: 'Source Sans Pro', sans-serif !important;
+
+}
+
+.logo-size {
+    width: 70px;
+    margin-left: 200px;
+}
+
+
+.logo-typo{
+    font-family: 'Fredoka One', cursive;
+}
+
+.nav-shadow{
+    background-color: rgba(0,0,0,0.8);
+    -webkit-box-shadow: 0px 1px 9px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 1px 9px -2px rgba(0,0,0,0.75);
+    box-shadow: 0px 1px 9px -2px rgba(0,0,0,0.75);
+
+}
+
+.links-margin{
+    margin-right: 200px;
+}
+
+.link-margin{
+    margin-left: 30px;
+}
+
+.link-hover{
+    color: #ffffff !important;
+    transition: all 0.3s ease-in-out;
+}
+.link-hover:hover{
+    color: #bbbbbb !important;
+}
+
+.menu-space{
+    margin-top: 120px !important;
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+}
+
+
+.custom-table {
+    border-collapse: collapse;
+}
+.table thead th {
+    border-bottom: 0px; !important;
+}
+th,td {
+    padding: 15px 30px;
+}
+
+td{
+    text-align: left;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+th{
+    text-align: center;
+}
+
+.nameTypo{
+    color: #8445ff;
+}
+
+.categoryTypo{
+    color: #6e76ff;
+}
+.priceTypo{
+    color: #458cff;
+}
+.dateTypo{
+    color: #369fff;
+}
+/*TEXT GRADIENT IT's WORKED*/
+.text-purple {
+    text-transform: uppercase;
+    background: linear-gradient(to right, #8445ff 40%, #369fff 60%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.text-grey{
+    color: #363636;
+}
