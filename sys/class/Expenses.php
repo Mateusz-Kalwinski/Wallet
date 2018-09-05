@@ -15,9 +15,14 @@ class Expenses extends Database{
         return $lastExpenses;
     }
 
-    public function allExpensesMonth(){
-        $monthStart =  date('Y-m-').'01 00:00:00';
-        $monthEnd  = date('Y-m-t'). ' 23:59:59';
+    public function allExpensesMonth($backMonth){
+
+        $month = date('m')-$backMonth;
+
+        $monthStart =  date('Y') .'-'.$month.'-'.'01 00:00:00';
+        $monthEnd = date('Y') . '-' . $month . '-' . date('t'). ' 23:59:59';
+
+
         $allExpensesMonthSql = "SELECT `expense_price`
                                 FROM `expenses`
                                 WHERE `expense_date` BETWEEN '$monthStart' AND '$monthEnd';";
