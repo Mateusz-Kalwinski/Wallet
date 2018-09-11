@@ -9,7 +9,7 @@ class Expenses extends Database{
     public function lastExpenses($limit){
         $lastExpensesSql = "SELECT *, category.id as id_from_category FROM `expenses`
                 INNER JOIN category ON expenses.category_id = category.id
-                ORDER BY `expense_date` LIMIT $limit";
+                ORDER BY `expense_date` DESC LIMIT $limit";
 
         $lastExpenses = $this->query($lastExpensesSql);
         return $lastExpenses;
@@ -35,6 +35,3 @@ class Expenses extends Database{
     }
 
 }
-//just if you want check something
-//$x = new Expenses();
-//var_dump($x->allExpensesMonth());
