@@ -86,3 +86,12 @@ th{
 .text-grey{
     color: #363636;
 }
+
+.logout-form{
+    margin: 0px !important;
+}
+.logout-btn{
+    background-color: transparent;
+    border-width: 0px;
+    cursor: pointer;
+}
