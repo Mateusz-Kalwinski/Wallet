@@ -44,7 +44,9 @@
                     <a class="nav-link js-scroll-trigger link-hover" href="#" data-toggle="modal" data-target="#account">Konto</a>
                 </li>
                 <li class="nav-item link-margin">
-                    <a class="nav-link js-scroll-trigger link-hover" href="#clients">Wyloguj</a>
+                    <form class="logout-form" action="ajax/logout.php" method="post">
+                        <button type="submit" class="logout-btn nav-link js-scroll-trigger link-hover">Wyloguj</button>
+                    </form>
                 </li>
             </ul>
         </div>
