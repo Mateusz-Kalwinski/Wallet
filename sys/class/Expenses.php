@@ -6,16 +6,16 @@ require_once 'Database.php';
 class Expenses extends Database{
     //argument: type: INT, the limit of results
 
-    public function lastExpenses($limit){
+    public function lastExpenses($id, $limit){
         $lastExpensesSql = "SELECT *, category.id as id_from_category FROM `expenses`
                 INNER JOIN category ON expenses.category_id = category.id
+                WHERE `expenses`.`user_id` = '$id'
                 ORDER BY `expense_date` DESC LIMIT $limit";
-
         $lastExpenses = $this->query($lastExpensesSql);
         return $lastExpenses;
     }
 
-    public function allExpensesMonth($backMonth){
+    public function allExpensesMonth($id, $backMonth){
 
         $month = date('m')-$backMonth;
 
@@ -25,7 +25,7 @@ class Expenses extends Database{
 
         $allExpensesMonthSql = "SELECT `expense_price`
                                 FROM `expenses`
-                                WHERE `expense_date` BETWEEN '$monthStart' AND '$monthEnd';";
+                                WHERE `expense_date` BETWEEN '$monthStart' AND '$monthEnd' AND `user_id` = '$id';";
         $allExpensesMonth = $this->query($allExpensesMonthSql);
         $sum  = 0;
         foreach ($allExpensesMonth as $price){
@@ -35,3 +35,4 @@ class Expenses extends Database{
     }
 
 }
+
