@@ -10,6 +10,8 @@ if (empty($_SESSION)){
     header('Location: login.php');
 }
 
+$userId = $_SESSION['id'];
+
 require_once '../sys/class/Expenses.php';
 require_once '../sys/class/User.php';
 require_once '../sys/class/Category.php';
@@ -42,7 +44,7 @@ $category = new Category();
 
                 <?php
 
-                    $dataExpenses = $expenses->lastExpenses(5);
+                    $dataExpenses = $expenses->lastExpenses($userId, 5);
 
                     foreach ($dataExpenses as $dataExpens){
                         echo'
@@ -59,21 +61,37 @@ $category = new Category();
             </table>
         </div>
         <?php
-            $userData = $user->userData(1);
-            if (empty($expenses->allExpensesMonth(0)) OR empty($expenses->allExpensesMonth(1)) OR empty($expenses->allExpensesMonth(2)) OR empty($expenses->allExpensesMonth(3)) OR empty($expenses->allExpensesMonth(4))){
+            $userData = $user->userData($userId);
+
+            if (empty($expenses->allExpensesMonth($userId, 0 ))){
                 $sumExpenses_0 = 0;
-                $sumExpenses_1 = 0;
-                $sumExpenses_2 = 0;
-                $sumExpenses_3 = 0;
-                $sumExpenses_4 = 0;
-            }else {
-                $sumExpenses_0 = $expenses->allExpensesMonth(0);
-                $sumExpenses_1 = $expenses->allExpensesMonth(1);
-                $sumExpenses_2 = $expenses->allExpensesMonth(2);
-                $sumExpenses_3 = $expenses->allExpensesMonth(3);
-                $sumExpenses_4 = $expenses->allExpensesMonth(4);
+            }else{
+                $sumExpenses_0 = $expenses->allExpensesMonth($userId, 0);
             }
 
+        if (empty($expenses->allExpensesMonth($userId, 1 ))){
+            $sumExpenses_1 = 0;
+        }else{
+            $sumExpenses_1 = $expenses->allExpensesMonth($userId, 1);
+        }
+
+        if (empty($expenses->allExpensesMonth($userId, 2 ))){
+            $sumExpenses_2 = 0;
+        }else{
+            $sumExpenses_2 = $expenses->allExpensesMonth($userId, 2);
+        }
+
+        if (empty($expenses->allExpensesMonth($userId, 3 ))){
+            $sumExpenses_3 = 0;
+        }else{
+            $sumExpenses_3 = $expenses->allExpensesMonth($userId, 3);
+        }
+
+        if (empty($expenses->allExpensesMonth($userId, 4 ))){
+            $sumExpenses_4 = 0;
+        }else{
+            $sumExpenses_4 = $expenses->allExpensesMonth($userId, 4);
+        }
             $dataLabel = date('n');
 
         ?>
@@ -90,6 +108,15 @@ $category = new Category();
             <h4 class="text-grey text-center"><?=$sumExpenses_0?> zł</h4>
             <br>
             <canvas id="myChart1" style="width: 200px; height: 200px;" width="1300" height="340"></canvas>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <h2 class="text-purple text-center">Główny wykres</h2>
+            <br>
+            <canvas id="myChart4" style="width: 200px; height: 200px;" width="1300" height="340"></canvas>
+
         </div>
     </div>
 
@@ -116,7 +143,7 @@ $category = new Category();
                             <select name="expenseCategory" class="form-control" id="expenseCategory">
                                 <?php
 
-                                $dataCategories = $category->categoryData();
+                                $dataCategories = $category->categoryData($userId);
 
                                 foreach ($dataCategories as $dataCategory){
                                     echo '<option value='. $dataCategory['id'].'>'.$dataCategory["category_name"].'</option>';
@@ -390,7 +417,6 @@ $("#resetPassword").submit(function(event){
         data: {
             labels: ["<?=$dataLabel?>", "<?=$dataLabel -1?>", "<?=$dataLabel -2?>", "<?=$dataLabel -3?>", "<?=$dataLabel -4?>"],
             datasets: [{
-                label: '# of Votes',
                 data: [<?=$sumExpenses_0?>, <?=$sumExpenses_1?>, <?=$sumExpenses_2?>, <?=$sumExpenses_3?>, <?=$sumExpenses_4?>],
                 backgroundColor: [
                     gradientStroke,
@@ -408,6 +434,79 @@ $("#resetPassword").submit(function(event){
             }
         }
     });
+
+
+// BAR CHART
+
+
+var barChartData = {
+    labels: [
+        <?php
+        foreach ($dataCategories as $dataCategory){
+            echo "'".$dataCategory["category_name"]."',";
+        }
+        ?>
+    ],
+    datasets: [
+        {
+            label: "American Express",
+            backgroundColor: gradientStroke,
+            borderWidth: 0,
+            data: [2130, 1130, 1130, 1130,1130, 115, 6, 7]
+        },
+        {
+            label: "Mastercard",
+            backgroundColor: gradientStroke1,
+            borderWidth: 0,
+            data: [4, 7, 3, 6, 10,7,4,6]
+        },
+        {
+            label: "Paypal",
+            backgroundColor: gradientStroke2,
+            borderWidth: 0,
+            data: [10,7,4,6,9,7,3,10]
+        },
+        {
+            label: "Visa",
+            backgroundColor: gradientStroke3,
+            borderWidth: 0,
+            data: [6,9,7,3,10,7,4,6]
+        },
+        {
+            label: "Visas",
+            backgroundColor: gradientStroke4,
+            borderWidth: 0,
+            data: [6,9,7,3,10,7,4,6]
+        }
+    ]
+};
+
+var chartOptions = {
+    responsive: true,
+    legend: {
+        display:true
+    },
+    title: {
+        display: false
+    },
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+    }
+}
+
+window.onload = function() {
+    var ctx = document.getElementById("myChart4").getContext("2d");
+    window.myBar = new Chart(ctx, {
+        type: "bar",
+        data: barChartData,
+        options: chartOptions
+    });
+};
+
 </script>
 
 <?php
