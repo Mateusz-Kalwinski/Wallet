@@ -161,7 +161,7 @@ $category = new Category();
 
                             <input type="date" name="expenseDate" id="expenseDate" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-primary text-purple">Dodaj</button>
+                        <button type="submit" class="btn btn-primary">Dodaj</button>
 
                         <h4 class="text-purple" id="server-results-expense"></h4>
                     </form>
@@ -189,7 +189,13 @@ $category = new Category();
                             <label for="categoryName">Nazwa</label>
                             <input type="text" name="categoryName" class="form-control" id="categoryName" aria-describedby="info" placeholder="Nazwa kategorii">
                         </div>
-                        <button type="submit" class="btn btn-primary text-purple">Dodaj</button>
+                        <div class="form-group">
+                            <label for="categoryColor">Kolor kategorii</label>
+                            <input type="color" name="categoryColor" class="form-control" id="categoryColor" aria-describedby="infoColor" value="#8445ff">
+                            <small id="infoColor" class="form-text text-muted">W tym kolorze będą widoczne wydatki na wykresie słupkowym</small>
+
+                        </div>
+                        <button type="submit" class="btn btn-primary">Dodaj</button>
 
                         <h4 class="text-purple" id="server-results-category"></h4>
                     </form>
@@ -245,9 +251,9 @@ $category = new Category();
                             </div>
                             <div class="form-group">
                                 <input type="number" name="OverallBudget" class="form-control" id="OverallBudget" aria-describedby="infoBudget" placeholder="Podaj kwote" step="0.01">
-                                <small id="infoBudget" class="form-text text-muted">Po zatwierdzeniu budżet ogólny zostanie nadpisany.</small>
+                                <small id="infoBudget" class="form-text text-muted">Po zatwierdzeniu budżet ogólny zostanie zmieniony.</small>
                             </div>
-                            <button type="submit" class="btn btn-primary text-purple">Dodaj</button>
+                            <button type="submit" class="btn btn-primary">Dodaj</button>
 
                             <h4 class="text-purple" id="server-results-budget"></h4>
                         </form>
@@ -267,7 +273,7 @@ $category = new Category();
                                 <label for="newPassword">Nowe Hasło</label>
                                 <input type="password" name="newPassword" class="form-control" id="newPassword"  placeholder="Podaj nowe hasło">
                             </div>
-                            <button type="submit" class="btn btn-primary text-purple">Zmień hasło</button>
+                            <button type="submit" class="btn btn-primary">Zmień hasło</button>
 
                             <h4 class="text-purple" id="server-results-resetPassword"></h4>
                         </form>
@@ -279,8 +285,6 @@ $category = new Category();
         </div>
     </div>
 </div>
-</div>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
@@ -442,42 +446,38 @@ $("#resetPassword").submit(function(event){
 var barChartData = {
     labels: [
         <?php
-        foreach ($dataCategories as $dataCategory){
-            echo "'".$dataCategory["category_name"]."',";
+            $weeksArray = $expenses->weeksInMonth();
+        foreach ($weeksArray as $week){
+            echo "'".$week["first_day"]." - ".$week["last_day"]."',";
         }
         ?>
     ],
     datasets: [
-        {
-            label: "American Express",
-            backgroundColor: gradientStroke,
-            borderWidth: 0,
-            data: [2130, 1130, 1130, 1130,1130, 115, 6, 7]
-        },
-        {
-            label: "Mastercard",
-            backgroundColor: gradientStroke1,
-            borderWidth: 0,
-            data: [4, 7, 3, 6, 10,7,4,6]
-        },
-        {
-            label: "Paypal",
-            backgroundColor: gradientStroke2,
-            borderWidth: 0,
-            data: [10,7,4,6,9,7,3,10]
-        },
-        {
-            label: "Visa",
-            backgroundColor: gradientStroke3,
-            borderWidth: 0,
-            data: [6,9,7,3,10,7,4,6]
-        },
-        {
-            label: "Visas",
-            backgroundColor: gradientStroke4,
-            borderWidth: 0,
-            data: [6,9,7,3,10,7,4,6]
+
+        <?php
+        $expenseArray = $expenses->sumByCategory($userId);
+
+
+        foreach ($expenseArray as $expense){
+            echo '{';
+            echo "label: '".$expense["category_name"]."',";
+
+            echo "backgroundColor: '".$expense["category_color"]."',";
+
+
+            echo "borderWidth: 0,";
+
+            echo 'data: [';
+            foreach ($expense['week_expense'] as $value){
+                echo $value . ',  ';
+            }
+            echo ']';
+
+            echo '},';
+
         }
+
+        ?>
     ]
 };
 
