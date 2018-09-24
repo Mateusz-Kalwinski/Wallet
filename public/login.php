@@ -32,21 +32,24 @@ session_start();
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </head>
     <body>
+    <div class="login-bg">
+
     <div class="container-fluid h-100">
-        <div class="row h-100 justify-content-center align-items-center">
-            <form class="col-lg-4 col-md-6 col-sm-8" action="ajax/login.php" method="post" id="loginForm">
-                <h4 class="modal-title text-purple" id="addCategoryLabel">Formularz logowania</h4>
-                <div class="form-group">
-                    <label for="emailLogin">Email</label>
-                    <input type="email" name="emailLogin" class="form-control" id="emailLogin" placeholder="Podaj email">
-                </div>
-                <div class="form-group">
-                    <label for="passwordLogin">Hasło</label>
-                    <input type="password" name="passwordLogin" class="form-control" id="passwordLogin" placeholder="Podaj hasło">
-                </div>
-                <button type="submit" class="btn btn-primary text-purple">Zaloguj</button>
-                <h4 class="text-purple" id="server-results-login"></h4>
-            </form>
+            <div class="row h-100 justify-content-center align-items-center">
+                <form class="col-lg-4 col-md-6 col-sm-8" action="ajax/login.php" method="post" id="loginForm">
+                    <h4 class="text-white text-uppercase" id="addCategoryLabel">Formularz logowania</h4>
+                    <div class="form-group">
+                        <label for="emailLogin" class="text-white">Email</label>
+                        <input type="email" name="emailLogin" class="form-control" id="emailLogin" placeholder="Podaj email">
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordLogin" class="text-white">Hasło</label>
+                        <input type="password" name="passwordLogin" class="form-control" id="passwordLogin" placeholder="Podaj hasło">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Zaloguj</button>
+                    <h4 class="text-purple" id="server-results-login"></h4>
+                </form>
+            </div>
         </div>
     </div>
     </body>
@@ -62,7 +65,11 @@ session_start();
                 type: request_method,
                 data : form_data
             }).done(function(response){
-                $("#server-results-login").html(response);
+                if (response == 'login'){
+                    window.location = 'index.php';
+                }else {
+                    $("#server-results-login").html(response);
+                }
 
             });
         });
