@@ -9,12 +9,12 @@ session_start();
 
 if (file_exists(dirname(dirname(__FILE__).'/config.php'))) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (!empty($_POST['categoryName'])) {
+        if (!empty($_POST['categoryName']) && !empty($_POST['categoryColor'])) {
 
             require_once dirname(dirname(__FILE__)) . '/config.php';
 
             $categoryName = $_POST['categoryName'];
-
+            $categoryColor = $_POST['categoryColor'];
 
             $conn = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8", DB_USER, DB_PASSWORD);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -22,8 +22,8 @@ if (file_exists(dirname(dirname(__FILE__).'/config.php'))) {
 
             $userId = $_SESSION['id'];
 
-            $addExpenseSql = "INSERT INTO `category` (`user_id`, `category_name`)
-                              VALUES ('$userId', '$categoryName')";
+            $addExpenseSql = "INSERT INTO `category` (`user_id`, `category_name`, `category_color`)
+                              VALUES ('$userId', '$categoryName', '$categoryColor')";
             $addExpenseStmt = $conn->prepare($addExpenseSql);
             $addExpenseExec = $addExpenseStmt->execute();
 
