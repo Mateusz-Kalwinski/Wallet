@@ -32,7 +32,7 @@ if (file_exists(dirname(dirname(__FILE__).'/config.php'))) {
                     session_start();
 
                     $_SESSION['id'] = $verificationResult[0]['id'];
-                    header('Location: ../');
+                    echo 'login';
 
                 } else {
                     echo 'Podano niewłaściwy login lub hasło.';
