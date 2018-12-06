@@ -1,6 +1,6 @@
 # Wallet
 <img src="https://github.com/Mateusz-Kalwinski/Wallet/blob/master/public/assets/img/wallet%20LOGO.png" width="150">
-___
+
 ### description:
 
 ###### I did it for myself.
@@ -12,7 +12,7 @@ ___
   - ###### PHP
   - ###### SQL
   - ###### jQuery
-   - ###### Ajax
+   -- ###### Ajax
   - ###### Chart.js
   - ###### HTML 5
   - ###### CSS 3
@@ -26,9 +26,9 @@ ___
   - ###### Adding / initial budget
   - ###### Login system
   - ###### creates charts:
-   - ###### compares monthly expenses from 5 months ago
-   - ###### calculates monthly expenses compared to the initial budget
-   - ###### shows monthly expenses divided into the number of weeks depending on the expense category
+   -- ###### compares monthly expenses from 5 months ago
+   -- ###### calculates monthly expenses compared to the initial budget
+   -- ###### shows monthly expenses divided into the number of weeks depending on the expense category
    
 ### future:
 
