@@ -29,12 +29,9 @@
     - ###### compares monthly expenses from 5 months ago
     - ###### calculates monthly expenses compared to the initial budget
     - ###### shows monthly expenses divided into the number of weeks depending on the expense category
-   
-### future:
+ - ###### delete edit expense 
+ - ###### delete edit expense category
 
- - ###### delete editing expense 
- - ###### delete editing expense category
- - ###### a few extra charts
    
 
 
