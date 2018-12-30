@@ -34,6 +34,19 @@ class Expenses extends Database{
         return $sum;
     }
 
+    public function getAllExpenses($id) {
+
+        $allExpensesSql = "SELECT *, `expenses`.`id` as `id` FROM `expenses`
+                INNER JOIN category ON expenses.category_id = category.id
+                WHERE `expenses`.`user_id` = '$id'
+                ORDER BY `expense_date` DESC";
+
+        $allExpenses = $this->query($allExpensesSql);
+
+        return $allExpenses;
+
+    }
+
 
 
     public function weeksInMonth()
@@ -115,14 +128,8 @@ class Expenses extends Database{
 
         return$expenseArray;
 
-//        echo '<pre>';
-//            print_r($expenseArray);
-//        echo '</pre>';
-
     }
 
 
 }
- $y = new Expenses();
-$y->sumByCategory(1);
 
