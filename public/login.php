@@ -9,7 +9,6 @@ session_start();
     if (!empty($_SESSION['id'])){
         header('Location: index.php');
     }
-//    echo password_hash('PoPuP5unixW2', PASSWORD_DEFAULT);
 ?>
 
 <html>
