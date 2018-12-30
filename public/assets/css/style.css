@@ -76,6 +76,12 @@ th{
 .dateTypo{
     color: #369fff;
 }
+.editTypo{
+    color: #63a0ff;
+}
+.deleteTypo{
+     color: #7aa1ff;
+ }
 /*TEXT GRADIENT IT's WORKED*/
 .text-purple {
     text-transform: uppercase !important;
@@ -103,4 +109,16 @@ th{
     background-position:center center;
     width: 100%;
 
+}
+
+.mx-auto {
+    margin: auto;
+}
+.delete-btn{
+    background-image: url("../img/baseline-delete_outline-24px.svg");
+    height: 24px;
+    width: 24px;
+    background-color: transparent;
+    border:none;
+    cursor: pointer;
 }
