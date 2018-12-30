@@ -154,7 +154,7 @@ $category = new Category();
                         </div>
                         <div class="form-group">
                             <label for="expensePrice">Kwota</label>
-                            <input type="number" name="expensePrice" class="form-control" id="expensePrice" placeholder="Kwota wydatku np: 7.27">
+                            <input type="number" step="0.01" name="expensePrice" class="form-control" id="expensePrice" placeholder="Kwota wydatku np: 7.27">
                         </div>
                         <div class="form-group">
                             <label for="expenseDate">Data</label>
@@ -242,7 +242,7 @@ $category = new Category();
                         <h5 class="text-purple" id="accountLabel">Formularz dodawania budżetu początkowego.</h5>
                         <form action="ajax/updateOverallBudget.php" method="post" id="updateOverallBudget">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="addToBudget" id="addToBudget" value="addToBudget" checked>
+                                <input class="form-check-input" type="radio" name="addToBudget" id="addToBudget" value="addToBudget">
                                 <label class="form-check-label" for="addToBudget">Dodaj kwote do budżetu</label>
                             </div>
                             <div class="form-check form-check-inline">
