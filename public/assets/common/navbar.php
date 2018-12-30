@@ -41,6 +41,9 @@
                     <a class="nav-link js-scroll-trigger link-hover" href="#" data-toggle="modal" data-target="#addCategory">Dodaj kategorie</a>
                 </li>
                 <li class="nav-item link-margin">
+                    <a class="nav-link js-scroll-trigger link-hover" href="expenses.php" >Panel Administracyjny</a>
+                </li>
+                <li class="nav-item link-margin">
                     <a class="nav-link js-scroll-trigger link-hover" href="#" data-toggle="modal" data-target="#account">Konto</a>
                 </li>
                 <li class="nav-item link-margin">
