@@ -12,7 +12,7 @@
   - ###### PHP
   - ###### SQL
   - ###### jQuery
-    - ###### Ajax
+  - ###### Ajax
   - ###### Chart.js
   - ###### HTML 5
   - ###### CSS 3
@@ -26,9 +26,9 @@
   - ###### Adding / initial budget
   - ###### Login system
   - ###### creates charts:
-    - ###### compares monthly expenses from 5 months ago
-    - ###### calculates monthly expenses compared to the initial budget
-    - ###### shows monthly expenses divided into the number of weeks depending on the expense category
+    - compares monthly expenses from 5 months ago
+    - calculates monthly expenses compared to the initial budget
+    - shows monthly expenses divided into the number of weeks depending on the expense category
  - ###### delete edit expense 
  - ###### delete edit expense category
 
